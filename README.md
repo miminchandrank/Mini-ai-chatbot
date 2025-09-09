@@ -27,6 +27,7 @@ A web-based AI chatbot that answers professional questions about productivity, r
    Backend Setup (Python)
 
 bash
+
 # Navigate to backend directory
 cd backend
 
