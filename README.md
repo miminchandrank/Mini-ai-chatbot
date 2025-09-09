@@ -1,22 +1,30 @@
-Professional AI Chatbot - README
-📋 Project Overview
+# Professional AI Chatbot
+
 A web-based AI chatbot that answers professional questions about productivity, remote work, startups, and business topics. The system first checks a local knowledge base for matching questions, and if no match is found, uses OpenRouter's AI models to generate responses.
 
-🚀 Quick Start
-Prerequisites
-Python 3.8+
+## 📋 Features
 
-Node.js 14+
+- **Dual Answer System**: Answers from local knowledge base or AI model
+- **Chat History**: Maintains conversation history with source tracking
+- **Responsive Design**: Works on desktop and mobile devices
+- **Professional Focus**: Specialized in business and productivity topics
+- **Visual Indicators**: Clear badges showing answer sources (KB vs AI)
 
-npm or yarn
+## 🚀 Quick Start
 
-Installation & Setup
-Clone the repository
+### Prerequisites
+- Python 3.8+
+- Node.js 14+
+- npm or yarn
 
-bash
-git clone <your-repo-url>
-cd professional-ai-chatbot
-Backend Setup (Python)
+### Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd professional-ai-chatbot
+
+   Backend Setup (Python)
 
 bash
 # Navigate to backend directory
@@ -194,3 +202,54 @@ Knowledge Base responses: Blue "KB" badge, instant response
 LLM responses: Green "AI" badge, slightly slower response
 
 Fallback responses: Handles greetings and edge cases gracefully
+
+🚨 Troubleshooting
+Common Issues
+CORS Errors
+
+Ensure backend is running on port 8000
+
+Check CORS configuration in app.py
+
+API Key Issues
+
+Verify OpenRouter API key in .env file
+
+Check if the key has sufficient credits
+
+Module Not Found Errors
+
+Ensure all dependencies are installed: pip install -r requirements.txt
+
+Port Already in Use
+
+Change ports in app.py (backend) or package.json (frontend)
+
+Debug Mode
+Add debug logging to the backend by uncommenting print statements in app.py to see:
+
+Question processing
+
+Matching results
+
+API call details
+
+📝 Assumptions Made
+User Expertise: Users have basic technical knowledge to set up Python and Node.js environments
+
+Internet Connection: Required for OpenRouter API calls when questions aren't in the knowledge base
+
+API Limits: OpenRouter API key has sufficient credits for testing and usage
+
+Browser Support: Modern browsers with ES6+ support (Chrome, Firefox, Safari, Edge)
+
+Question Format: Users will ask complete, coherent questions rather than keywords
+
+Professional Context: Questions will be related to business, productivity, and professional topics
+
+English Language: All questions and responses are in English
+
+Local Storage: Chat history is stored locally in JSON files (not suitable for production)
+
+
+
