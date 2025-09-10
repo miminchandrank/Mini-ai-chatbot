@@ -29,82 +29,74 @@ Check out the walkthrough of this project on LinkedIn:
    ```bash
    git clone <your-repo-url>
    cd professional-ai-chatbot
+   ```
 
-
-
-
-
+2. **Backend Setup**
+   ```bash
    # Navigate to backend directory
-cd backend
+   cd backend
+   
+   # Create virtual environment
+   python -m venv venv
+   
+   # Activate virtual environment
+   # On Windows:
+   venv\Scripts\activate
+   # On macOS/Linux:
+   source venv/bin/activate
+   
+   # Install dependencies
+   pip install -r requirements.txt
+   
+   # Create environment file
+   echo "OPENROUTER_API_KEY=your_openrouter_api_key_here" > .env
+   ```
 
-# Create virtual environment
-python -m venv venv
+3. **Frontend Setup**
+   ```bash
+   # Navigate to frontend directory
+   cd frontend
+   
+   # Install dependencies
+   npm install
+   ```
 
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
+4. **Run the Application**
+   ```bash
+   # Start backend server (from backend directory)
+   cd backend
+   python app.py
+   
+   # Start frontend development server (from frontend directory)
+   cd frontend
+   npm start
+   ```
 
-# Install dependencies
-pip install -r requirements.txt
+5. **Access the Application**
+   Open your browser and go to http://localhost:3000
 
-# Create environment file
-echo "OPENROUTER_API_KEY=your_openrouter_api_key_here" > .env
+## 🛠️ Technologies Used
 
+**Backend**
+- FastAPI - Modern, fast web framework for building APIs
+- Python 3.8+ - Programming language
+- Uvicorn - ASGI server for running FastAPI
+- Requests - HTTP library for API calls
+- python-dotenv - Environment variable management
+- Pydantic - Data validation and settings management
 
+**Frontend**
+- React - JavaScript library for building user interfaces
+- CSS3 - Styling and responsive design
+- Fetch API - For making HTTP requests to the backend
 
-# Navigate to frontend directory
-cd frontend
+**AI/ML Services**
+- AI API Integration - For AI-generated responses when questions aren't in the knowledge base
+- Custom Knowledge Base - Local JSON file with curated Q&A pairs
 
-# Install dependencies
-npm install
+## 📁 Project Structure
 
-
-cd backend
-python app.py
-
-
-cd frontend
-npm start
-
-
-Application runs on: http://localhost:3000
-
-Access the Application
-Open your browser and go to http://localhost:3000
-
-🛠️ Technologies Used
-Backend
-FastAPI - Modern, fast web framework for building APIs
-
-Python 3.8+ - Programming language
-
-Uvicorn - ASGI server for running FastAPI
-
-Requests - HTTP library for API calls
-
-python-dotenv - Environment variable management
-
-Pydantic - Data validation and settings management
-
-Frontend
-React - JavaScript library for building user interfaces
-
-CSS3 - Styling and responsive design
-
-Fetch API - For making HTTP requests to the backend
-
-AI/ML Services
-AI API Integration - For AI-generated responses when questions aren't in the knowledge base
-
-Custom Knowledge Base - Local JSON file with curated Q&A pairs
-
-
-
-
-## project structure
-
+```
 professional-ai-chatbot/
 ├── backend/
 │   ├── app.py                 # FastAPI application
@@ -122,90 +114,79 @@ professional-ai-chatbot/
 │   │   └── index.html        # HTML template
 │   └── package.json          # Node.js dependencies
 └── README.md
+```
 
+## 🔌 API Endpoints
 
-API Endpoints
-POST /ask
-Purpose: Submit a question to the chatbot
+**POST /ask**
+- Purpose: Submit a question to the chatbot
+- Request Body: `{"question": "Your question here"}`
+- Response:
+  ```json
+  {
+    "answer": "Response text",
+    "matched_question": "Matched question from KB (if applicable)",
+    "source": "knowledge_base" or "ai"
+  }
+  ```
 
-Request Body: {"question": "Your question here"}
+**GET /history**
+- Purpose: Retrieve chat history
+- Response:
+  ```json
+  {
+    "history": [
+      {
+        "question": "User question",
+        "answer": "Bot response",
+        "matched_question": "Matched question",
+        "source": "response source"
+      }
+    ]
+  }
+  ```
 
-Response:
+## 🧠 Knowledge Base
 
-json
-{
-  "answer": "Response text",
-  "matched_question": "Matched question from KB (if applicable)",
-  "source": "knowledge_base" or "ai"
-}
-GET /history
-Purpose: Retrieve chat history
-
-Response:
-
-json
-{
-  "history": [
-    {
-      "question": "User question",
-      "answer": "Bot response",
-      "matched_question": "Matched question",
-      "source": "response source"
-    }
-  ]
-}
-🧠 Knowledge Base
 The system includes a pre-defined knowledge base with questions about:
 
-Productivity techniques
-
-Remote work best practices
-
-Startup fundamentals
-
-Team management
-
-Work-life balance
+- Productivity techniques
+- Remote work best practices
+- Startup fundamentals
+- Team management
+- Work-life balance
 
 Example Q&A:
+- "How can I improve my productivity?" → Time blocking, Eisenhower Matrix, etc.
+- "What are the benefits of remote work?" → Flexibility, no commute, etc.
 
-"How can I improve my productivity?" → Time blocking, Eisenhower Matrix, etc.
+## ⚙️ Configuration
 
-"What are the benefits of remote work?" → Flexibility, no commute, etc.
-
-⚙️ Configuration
-Environment Variables
-Create a .env file in the backend directory:
-
-env
+**Environment Variables**
+Create a `.env` file in the backend directory:
+```
 OPENROUTER_API_KEY=your_api_key_here
-AI Configuration
+```
+
+**AI Configuration**
 The system uses AI API with the following settings:
+- Balanced creativity temperature
+- Concise response length
+- Professional business assistant context
 
-Balanced creativity temperature
+## 🧪 Testing
 
-Concise response length
+**Test Knowledge Base Questions**
+- "How can I improve my productivity?"
+- "What are the benefits of remote work?"
+- "How do I start a startup?"
 
-Professional business assistant context
+**Test AI Questions**
+- "What is the capital of France?"
+- "Explain quantum computing"
+- "What are the latest tech trends?"
 
-🧪 Testing
-Test Knowledge Base Questions
-"How can I improve my productivity?"
-
-"What are the benefits of remote work?"
-
-"How do I start a startup?"
-
-Test AI Questions
-"What is the capital of France?"
-
-"Explain quantum computing"
-
-"What are the latest tech trends?"
-
-Verification
-Knowledge Base responses: Blue "KB" badge, instant response
-
-AI responses: Green "AI" badge, slightly slower response
-
-Fallback responses: Handles greetings and edge cases gracefully
+**Verification**
+- Knowledge Base responses: Blue "KB" badge, instant response
+- AI responses: Green "AI" badge, slightly slower response
+- Fallback responses: Handles greetings and edge cases gracefully
